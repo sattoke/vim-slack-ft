@@ -9,6 +9,10 @@ setlocal textwidth=0
 setlocal formatoptions-=t
 
 let b:undo_ftplugin = 'setlocal wrap< linebreak< textwidth< formatoptions<'
+        \ . '| execute "iunmap <buffer> <CR>"'
+
+" List continuation: <CR> on a list line inserts the same marker on the next line
+inoremap <buffer><expr> <CR> slack#ftplugin#cr()
 
 " Conversion commands (operate on range or whole buffer)
 command! -buffer -range=% SlackToGFM
