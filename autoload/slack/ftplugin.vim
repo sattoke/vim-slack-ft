@@ -12,7 +12,8 @@ function! slack#ftplugin#cr() abort
         if line =~# '^\s*\d\+\.\s*$'
             return "\<C-u>"
         endif
-        return "\<CR>\<C-u>" . m[1] . (m[2] + 1) . '. '
+        let nl = empty(m[1]) ? "\<CR>" : "\<CR>\<C-u>"
+        return nl . m[1] . (m[2] + 1) . '. '
     endif
 
     " Unordered list: leading spaces + "- " or "* "
@@ -21,7 +22,8 @@ function! slack#ftplugin#cr() abort
         if line =~# '^\s*[-*]\s*$'
             return "\<C-u>"
         endif
-        return "\<CR>\<C-u>" . m[1] . m[2] . ' '
+        let nl = empty(m[1]) ? "\<CR>" : "\<CR>\<C-u>"
+        return nl . m[1] . m[2] . ' '
     endif
 
     return "\<CR>"
